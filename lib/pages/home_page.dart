@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_flutter_cifo/pages/data/repository/auth_firebase_repository.dart';
+import 'package:firebase_flutter_cifo/data/repository/auth_firebase_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,11 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: Text("Home Page")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          AuthFirebaseRepository.signInAnonymously();
-        },
-      ),
+      floatingActionButton: FloatingActionButton(onPressed: () async {}),
     );
   }
 }
