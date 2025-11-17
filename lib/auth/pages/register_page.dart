@@ -1,5 +1,5 @@
 import 'package:firebase_flutter_cifo/core/router/app_router.dart';
-import 'package:firebase_flutter_cifo/widgets/register_email_form_widget.dart';
+import 'package:firebase_flutter_cifo/auth/widgets/register_email_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

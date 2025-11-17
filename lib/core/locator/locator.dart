@@ -1,4 +1,4 @@
-import 'package:firebase_flutter_cifo/cubits/start_app/start_app_cubit.dart';
+import 'package:firebase_flutter_cifo/start/cubits/start_app/start_app_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.instance;

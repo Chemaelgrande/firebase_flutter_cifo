@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:firebase_flutter_cifo/core/locator/locator.dart';
-import 'package:firebase_flutter_cifo/cubits/start_app/start_app_cubit.dart';
-import 'package:firebase_flutter_cifo/pages/home_page.dart';
-import 'package:firebase_flutter_cifo/pages/intial_page.dart';
-import 'package:firebase_flutter_cifo/pages/login_page.dart';
-import 'package:firebase_flutter_cifo/pages/register_page.dart';
+import 'package:firebase_flutter_cifo/start/cubits/start_app/start_app_cubit.dart';
+import 'package:firebase_flutter_cifo/home/pages/home_page.dart';
+import 'package:firebase_flutter_cifo/start/pages/intial_page.dart';
+import 'package:firebase_flutter_cifo/auth/pages/login_page.dart';
+import 'package:firebase_flutter_cifo/auth/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
