@@ -14,22 +14,22 @@ class IntialPage extends StatelessWidget {
     return BlocConsumer<StartAppCubit, StartAppState>(
       bloc: locator<StartAppCubit>()..init(),
       listener: (context, state) {
-        if (state.isLoged == true) {
-          return context.goNamed(AppRoutes.home.name);
-        }
+        // if (state.isLoged == true) {
+        //   return context.goNamed(AppRoutes.home.name);
+        // }
 
-        if (state.isLoged == false) {
-          return context.goNamed(AppRoutes.login.name);
-        }
+        // if (state.isLoged == false) {
+        //   return context.goNamed(AppRoutes.login.name);
+        // }
       },
       builder: (context, state) {
         return Scaffold(
           body: Center(child: CircularProgressIndicator()),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              locator<StartAppCubit>().loginSesion();
-            },
-          ),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     locator<StartAppCubit>().loginSesion();
+          //   },
+          // ),
         );
       },
     );

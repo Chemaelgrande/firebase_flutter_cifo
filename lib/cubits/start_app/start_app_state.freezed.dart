@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StartAppState {
 
- bool get isLoged;
+ bool? get isLoged;
 /// Create a copy of StartAppState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $StartAppStateCopyWith<$Res>  {
   factory $StartAppStateCopyWith(StartAppState value, $Res Function(StartAppState) _then) = _$StartAppStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoged
+ bool? isLoged
 });
 
 
@@ -62,10 +62,10 @@ class _$StartAppStateCopyWithImpl<$Res>
 
 /// Create a copy of StartAppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoged = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoged = freezed,}) {
   return _then(_self.copyWith(
-isLoged: null == isLoged ? _self.isLoged : isLoged // ignore: cast_nullable_to_non_nullable
-as bool,
+isLoged: freezed == isLoged ? _self.isLoged : isLoged // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -150,7 +150,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoged)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool? isLoged)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StartAppState() when $default != null:
 return $default(_that.isLoged);case _:
@@ -171,7 +171,7 @@ return $default(_that.isLoged);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoged)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool? isLoged)  $default,) {final _that = this;
 switch (_that) {
 case _StartAppState():
 return $default(_that.isLoged);case _:
@@ -191,7 +191,7 @@ return $default(_that.isLoged);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoged)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool? isLoged)?  $default,) {final _that = this;
 switch (_that) {
 case _StartAppState() when $default != null:
 return $default(_that.isLoged);case _:
@@ -206,10 +206,10 @@ return $default(_that.isLoged);case _:
 
 
 class _StartAppState implements StartAppState {
-  const _StartAppState({this.isLoged = false});
+  const _StartAppState({this.isLoged = null});
   
 
-@override@JsonKey() final  bool isLoged;
+@override@JsonKey() final  bool? isLoged;
 
 /// Create a copy of StartAppState
 /// with the given fields replaced by the non-null parameter values.
@@ -241,7 +241,7 @@ abstract mixin class _$StartAppStateCopyWith<$Res> implements $StartAppStateCopy
   factory _$StartAppStateCopyWith(_StartAppState value, $Res Function(_StartAppState) _then) = __$StartAppStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoged
+ bool? isLoged
 });
 
 
@@ -258,10 +258,10 @@ class __$StartAppStateCopyWithImpl<$Res>
 
 /// Create a copy of StartAppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoged = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoged = freezed,}) {
   return _then(_StartAppState(
-isLoged: null == isLoged ? _self.isLoged : isLoged // ignore: cast_nullable_to_non_nullable
-as bool,
+isLoged: freezed == isLoged ? _self.isLoged : isLoged // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
