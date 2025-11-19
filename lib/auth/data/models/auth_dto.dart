@@ -6,9 +6,14 @@ part 'auth_dto.g.dart';
 @JsonSerializable()
 class AuthDto {
   final String idUser;
+  final String eamil;
   final bool? isAnonymous;
 
-  AuthDto({required this.idUser, required this.isAnonymous});
+  AuthDto({
+    required this.idUser,
+    required this.isAnonymous,
+    required this.eamil,
+  });
 
   /// Connect the generated [_$PersonFromJson] function to the `fromJson`
   /// factory.
@@ -22,6 +27,10 @@ class AuthDto {
     final String idUser = firebaseUser.user?.uid ?? '';
     final bool? isAnonymous = firebaseUser.user?.isAnonymous;
 
-    return AuthDto(idUser: idUser, isAnonymous: isAnonymous);
+    return AuthDto(
+      idUser: idUser,
+      isAnonymous: isAnonymous,
+      eamil: firebaseUser.user?.email ?? '',
+    );
   }
 }

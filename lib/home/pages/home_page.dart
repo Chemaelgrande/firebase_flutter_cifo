@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
       body: Center(child: Text("Home Page")),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          locator<StartAppCubit>().logOutSesion();
+          locator<StartAppCubit>().getUserById();
         },
       ),
     );

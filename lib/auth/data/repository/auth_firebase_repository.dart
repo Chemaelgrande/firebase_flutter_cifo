@@ -62,7 +62,11 @@ class AuthFirebaseRepository {
     if (user == null) {
       return null;
     } else {
-      return AuthDto(idUser: user.uid, isAnonymous: user.isAnonymous);
+      return AuthDto(
+        idUser: user.uid,
+        isAnonymous: user.isAnonymous,
+        eamil: user.email ?? '',
+      );
     }
   }
 }

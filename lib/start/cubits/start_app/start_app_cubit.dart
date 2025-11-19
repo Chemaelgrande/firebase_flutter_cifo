@@ -1,4 +1,5 @@
 //import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_flutter_cifo/auth/data/repository/user_firestore_repository.dart';
 import 'package:firebase_flutter_cifo/start/cubits/start_app/start_app_state.dart';
 import 'package:firebase_flutter_cifo/auth/data/models/auth_dto.dart';
 import 'package:firebase_flutter_cifo/auth/data/repository/auth_firebase_repository.dart';
@@ -61,7 +62,13 @@ class StartAppCubit extends Cubit<StartAppState> {
           password: password,
         );
     if (myUserCredential?.idUser != null) {
+      await UserFirestoreRepository.addNewUser(data: myUserCredential!);
       emit(state.copyWith(isLoged: true));
     }
+  }
+
+  Future<void> getUserById() async {
+    AuthDto? myUser = await UserFirestoreRepository().getUserById();
+    print(myUser!.eamil);
   }
 }

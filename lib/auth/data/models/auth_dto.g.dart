@@ -9,9 +9,11 @@ part of 'auth_dto.dart';
 AuthDto _$AuthDtoFromJson(Map<String, dynamic> json) => AuthDto(
   idUser: json['idUser'] as String,
   isAnonymous: json['isAnonymous'] as bool?,
+  eamil: json['eamil'] as String,
 );
 
 Map<String, dynamic> _$AuthDtoToJson(AuthDto instance) => <String, dynamic>{
   'idUser': instance.idUser,
+  'eamil': instance.eamil,
   'isAnonymous': instance.isAnonymous,
 };
