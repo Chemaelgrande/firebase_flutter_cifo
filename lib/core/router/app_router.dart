@@ -6,6 +6,7 @@ import 'package:firebase_flutter_cifo/home/pages/home_page.dart';
 import 'package:firebase_flutter_cifo/start/pages/intial_page.dart';
 import 'package:firebase_flutter_cifo/auth/pages/login_page.dart';
 import 'package:firebase_flutter_cifo/auth/pages/register_page.dart';
+import 'package:firebase_flutter_cifo/todo/ui/pages/todos_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -61,7 +62,7 @@ final goRouter = GoRouter(
       path: '/home',
       name: AppRoutes.home.name,
       builder: (context, state) {
-        return HomePage();
+        return TodosPage();
       },
     ),
   ],

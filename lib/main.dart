@@ -3,7 +3,9 @@ import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/firebase_options.dart';
 import 'package:firebase_flutter_cifo/home/pages/home_page.dart';
 import 'package:firebase_flutter_cifo/core/router/app_router.dart';
+import 'package:firebase_flutter_cifo/todo/cubits/todo_list/todo_list_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +19,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: goRouter);
+    return BlocProvider<TodoListCubit>(
+      create: (context) => TodoListCubit(),
+      child: MaterialApp.router(routerConfig: goRouter),
+    );
   }
 }
