@@ -10,6 +10,13 @@ class UserFirestoreRepository {
         .set(data.toJson(), SetOptions(merge: true));
   }
 
+  static Future<void> updateNewUser({required AuthDto data}) async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(data.idUser)
+        .set(data.toJson(), SetOptions(merge: true));
+  }
+
   Future<AuthDto?> getUserById() async {
     try {
       final query = await _getUserByIdFirebase();

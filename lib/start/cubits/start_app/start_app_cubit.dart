@@ -71,4 +71,23 @@ class StartAppCubit extends Cubit<StartAppState> {
     AuthDto? myUser = await UserFirestoreRepository().getUserById();
     print(myUser!.eamil);
   }
+
+  void toggleShowLoginPass(bool? isValue) {
+    bool showPass = !state.isObscureTextPassLogin;
+    emit(state.copyWith(isObscureTextPassLogin: showPass));
+
+    if (isValue != null) {
+      emit(state.copyWith(isObscureTextPassLogin: isValue));
+    }
+  }
+
+  void toggleShowRegisterPass() {
+    bool showPass = !state.isObscureTextPassRegister;
+    emit(state.copyWith(isObscureTextPassRegister: showPass));
+  }
+
+  void toggleShowRegisterRepeatPass() {
+    bool showPass = !state.isObscureTextRepeatPassRegister;
+    emit(state.copyWith(isObscureTextRepeatPassRegister: showPass));
+  }
 }

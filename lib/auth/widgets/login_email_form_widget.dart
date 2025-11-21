@@ -1,7 +1,10 @@
 import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/core/router/app_router.dart';
+import 'package:firebase_flutter_cifo/helpers/validators_form.dart';
 import 'package:firebase_flutter_cifo/start/cubits/start_app/start_app_cubit.dart';
+import 'package:firebase_flutter_cifo/start/cubits/start_app/start_app_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginEmailFormWidget extends StatelessWidget {
@@ -12,51 +15,74 @@ class LoginEmailFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 50),
-          TextFormField(
-            controller: emailController,
-            decoration: InputDecoration(hintText: "Introduzca el Email"),
-          ),
-          SizedBox(height: 50),
-          TextFormField(
-            controller: passwordController,
-            decoration: InputDecoration(hintText: "Introduzca su contraseña"),
-          ),
-          SizedBox(height: 50),
-          GestureDetector(
-            onTap: () {
-              // context.goNamed(AppRoutes.home.name);
-              locator<StartAppCubit>().signInWithEmailAndPassword(
-                email: emailController.text,
-                password: passwordController.text,
-              );
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+    ValidatorsForm validatorsForm = ValidatorsForm();
+    return BlocBuilder<StartAppCubit, StartAppState>(
+      bloc: locator<StartAppCubit>(),
+      builder: (context, state) {
+        return Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 50),
+              TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(hintText: "Introduzca el Email"),
+                validator: validatorsForm.isValidEmail,
               ),
-              height: 50,
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  "Iniciar sesión",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+              SizedBox(height: 50),
+              TextFormField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  hintText: "Introduzca su contraseña",
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      locator<StartAppCubit>().toggleShowLoginPass(null);
+                    },
+                    icon: Icon(
+                      (state.isObscureTextPassLogin == true)
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
+                    ),
+                  ),
+                ),
+                validator: validatorsForm.isValidPass,
+                obscureText: state.isObscureTextPassLogin,
+              ),
+              SizedBox(height: 50),
+              GestureDetector(
+                onTap: () {
+                  // context.goNamed(AppRoutes.home.name);
+                  if (_formKey.currentState!.validate()) {
+                    locator<StartAppCubit>().signInWithEmailAndPassword(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    );
+                  }
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  height: 50,
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      "Iniciar sesión",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
