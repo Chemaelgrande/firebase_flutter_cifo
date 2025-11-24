@@ -1,6 +1,8 @@
 import 'package:firebase_flutter_cifo/core/locator/locator.dart';
+import 'package:firebase_flutter_cifo/core/router/app_router.dart';
 import 'package:firebase_flutter_cifo/start/cubits/start_app/start_app_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,21 +14,26 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Home Page"),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("Ir al Módulo de Todos"),
+            ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                locator<StartAppCubit>().logOutSesion();
+                context.goNamed(AppRoutes.country.name);
               },
-              child: Text("Cerrar Sesión"),
+              child: Text("Ir al Módulo de Paises"),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                context.goNamed(AppRoutes.profile.name);
+              },
+              child: Text("Ir al Perfil"),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          locator<StartAppCubit>().getUserById();
-        },
       ),
     );
   }

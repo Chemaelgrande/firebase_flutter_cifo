@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_flutter_cifo/auth/pages/profile_page.dart';
 import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/country/ui/pages/country_page.dart';
 import 'package:firebase_flutter_cifo/start/cubits/start_app/start_app_cubit.dart';
@@ -11,13 +12,13 @@ import 'package:firebase_flutter_cifo/todo/ui/pages/todos_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-enum AppRoutes { login, register, home, initial }
+enum AppRoutes { login, register, home, initial, todos, country, profile }
 
 final useBloc = locator<StartAppCubit>();
 
 final List<String> routesWithoutAuth = ['/', '/login', '/register'];
 
-final List<String> routesWithAuth = [];
+final List<String> routesWithAuth = ['/home/profile', '/home/country'];
 
 final goRouter = GoRouter(
   refreshListenable: GoRouterRefreshStream(useBloc.stream),
@@ -32,7 +33,8 @@ final goRouter = GoRouter(
     if (useBloc.state.isLoged == false &&
         !routesWithoutAuth.contains(state.uri.toString())) {
       return '/login';
-    } else if (useBloc.state.isLoged == true) {
+    } else if (useBloc.state.isLoged == true &&
+        !routesWithAuth.contains(state.uri.toString())) {
       return '/home';
     }
     return null;
@@ -63,8 +65,24 @@ final goRouter = GoRouter(
       path: '/home',
       name: AppRoutes.home.name,
       builder: (context, state) {
-        return CountryPage();
+        return HomePage();
       },
+      routes: [
+        GoRoute(
+          path: 'profile',
+          name: AppRoutes.profile.name,
+          builder: (context, state) {
+            return ProfilePage();
+          },
+        ),
+        GoRoute(
+          path: 'country',
+          name: AppRoutes.country.name,
+          builder: (context, state) {
+            return CountryPage();
+          },
+        ),
+      ],
     ),
   ],
 );
