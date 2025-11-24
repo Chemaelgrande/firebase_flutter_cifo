@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/todo/cubits/todo_list/todo_list_cubit.dart';
 import 'package:firebase_flutter_cifo/todo/data/models/todo_dto.dart';
 import 'package:firebase_flutter_cifo/todo/ui/utils/background_dismissible.dart';
@@ -18,7 +19,7 @@ class ListTodosWidget extends StatelessWidget {
         return Dismissible(
           key: ValueKey(todos[index].id),
           onDismissed: (_) {
-            context.read<TodoListCubit>().removeTodo(todos[index]);
+            locator<TodoListCubit>().removeTodo(todos[index]);
           },
           confirmDismiss: (_) {
             return showDialog(

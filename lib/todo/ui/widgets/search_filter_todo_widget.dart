@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/todo/cubits/todo_list/todo_list_cubit.dart';
 import 'package:firebase_flutter_cifo/todo/data/models/todo_dto.dart';
 import 'package:firebase_flutter_cifo/todo/ui/widgets/filter_button.dart';
@@ -21,7 +22,7 @@ class SearchFilterTodoWidget extends StatelessWidget {
 
           onChanged: (value) {
             print("onChanged");
-            context.read<TodoListCubit>().searchTodo(value);
+            locator<TodoListCubit>().searchTodo(value);
           },
           onSubmitted: (value) {
             print("OnSubmitted");

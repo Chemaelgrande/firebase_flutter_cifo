@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/todo/cubits/todo_list/todo_list_cubit.dart';
 import 'package:firebase_flutter_cifo/todo/cubits/todo_list/todo_list_state.dart';
 import 'package:firebase_flutter_cifo/todo/data/models/todo_dto.dart';
@@ -11,6 +12,7 @@ class FilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TodoListCubit, TodoListState>(
+      bloc: locator<TodoListCubit>(),
       builder: (context, state) {
         return TextButton(
           child: Text(
@@ -23,7 +25,7 @@ class FilterButton extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            context.read<TodoListCubit>().setFilteredTodos(todo);
+            locator<TodoListCubit>().setFilteredTodos(todo);
           },
         );
       },

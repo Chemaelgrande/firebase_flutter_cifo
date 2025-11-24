@@ -15,7 +15,6 @@ class TodosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myTodoCubit = TodoListCubit();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -23,7 +22,7 @@ class TodosPage extends StatelessWidget {
         },
       ),
       body: BlocBuilder<TodoListCubit, TodoListState>(
-        bloc: myTodoCubit..getTodos(),
+        bloc: locator<TodoListCubit>()..getTodos(),
         builder: (context, state) {
           return Column(
             children: [
@@ -36,7 +35,7 @@ class TodosPage extends StatelessWidget {
                   shrinkWrap: true,
                   children: [
                     BlocBuilder<TodoListCubit, TodoListState>(
-                      bloc: myTodoCubit,
+                      bloc: locator<TodoListCubit>(),
                       builder: (context, state) {
                         if (state.todosFiltered.isEmpty &&
                             state.selectedFilter == Filter.active) {

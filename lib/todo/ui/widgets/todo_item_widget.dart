@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/todo/cubits/todo_list/todo_list_cubit.dart';
 import 'package:firebase_flutter_cifo/todo/data/models/todo_dto.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class TodoItemWidget extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    context.read<TodoListCubit>().editTodo(
+                    locator<TodoListCubit>().editTodo(
                       id: id,
                       todoDesc: myEditController.text,
                     );
@@ -72,7 +73,7 @@ class TodoItemWidget extends StatelessWidget {
         onChanged: (value) {
           print(value);
           print(isCompleted);
-          context.read<TodoListCubit>().toggleTodo(id);
+          locator<TodoListCubit>().toggleTodo(id);
         },
       ),
     );

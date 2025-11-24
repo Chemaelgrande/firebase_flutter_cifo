@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_cifo/core/locator/locator.dart';
 import 'package:firebase_flutter_cifo/todo/cubits/todo_list/todo_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ class CreateTodoWidget extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(label: Text("¿Qué quieres hacer?")),
       onSubmitted: (value) {
-        context.read<TodoListCubit>().addTodo(value);
+        locator<TodoListCubit>().addTodo(value);
       },
     );
   }
