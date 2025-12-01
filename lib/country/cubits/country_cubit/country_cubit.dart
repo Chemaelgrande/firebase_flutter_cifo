@@ -8,12 +8,17 @@ class CountryCubit extends Cubit<CountryState> {
 
   Future<void> getCountryByName(String name) async {
     emit(state.copyWith(status: StatusCountry.loading));
-    CountryDto? myCountry = await CountryApiRepository.getListCountriesObjetc(
-      name,
-    );
 
-    emit(
-      state.copyWith(selectedCountry: myCountry, status: StatusCountry.initial),
-    );
+    final response = await CountryApiRepository.getListCountriesObjetc(name);
+    if (response?.myCountry != null) {
+      emit(
+        state.copyWith(
+          countryResponse: response!,
+          status: StatusCountry.initial,
+        ),
+      );
+    } else {
+      emit(state.copyWith(status: StatusCountry.error));
+    }
   }
 }

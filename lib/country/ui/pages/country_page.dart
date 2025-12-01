@@ -23,14 +23,16 @@ class CountryPage extends StatelessWidget {
               icon: Icon(Icons.arrow_back),
             ),
           ),
-          body: Center(
-            child: (state.status == StatusCountry.loading)
-                ? CircularProgressIndicator()
-                : Text(
-                    state.selectedCountry?.capital.first ??
-                        'No hay pais Disponible',
-                  ),
-          ),
+          body: (state.countryResponse?.errorMessage == null)
+              ? Center(
+                  child: (state.status == StatusCountry.loading)
+                      ? CircularProgressIndicator()
+                      : Text(
+                          state.countryResponse?.myCountry?.capital.first ??
+                              'No hay pais Disponible',
+                        ),
+                )
+              : Center(child: Text(state.countryResponse?.errorMessage ?? '')),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               if ((state.status == StatusCountry.initial)) {
